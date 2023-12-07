@@ -139,10 +139,10 @@ function App() {
       <List.Item
         style={styles.item}
         actions={[
-          <Button variant="contained" color="error" onClick={() => deleteNote(item)}>Delete</Button>,
           <p style={styles.p} onClick={() => updateNote(item)}>
-            {item.completed ? <Button color="success" variant="outlined" >Completed <AssignmentTurnedInIcon/></Button> : <Button color="error" variant="outlined">Not Completed<CancelIcon/></Button>}
-          </p>
+            {item.completed ? <Button color="success" variant="contained" ><AssignmentTurnedInIcon/></Button> : <Button color="error" variant="outlined"><CancelIcon/></Button>}
+          </p>,
+          <Button variant="contained" color="error" onClick={() => deleteNote(item)}>Delete</Button>
         ]}
       >
         <List.Item.Meta
@@ -152,12 +152,13 @@ function App() {
       </List.Item>
     );
   }
+  const completedNotes = state.notes.filter(note => note.completed);
+  const totalNotes = state.notes.length;
 
   return (
-
     <Container maxWidth="sm">
       <Typography variant="h4" align="center" gutterBottom style={{ marginTop: '10px' }}>
-      Notes App
+        Notes App
       </Typography>
       <div style={styles.container}>
         <Input
@@ -176,10 +177,14 @@ function App() {
         />
         <Button
           onClick={createNote}
-          variant="outlined"
+          variant="contained"
+          style={{ width: '100%', marginBottom: 10}}
         > 
           <NoteAddIcon/> Add Note
-          </Button>
+        </Button>
+        <div style={{ textAlign: 'center', marginTop: '10px' }}>
+          <Typography variant='h6'>{completedNotes.length} Completed / {totalNotes} Total</Typography>
+        </div>
         <List
           loading={state.loading}
           dataSource={state.notes}

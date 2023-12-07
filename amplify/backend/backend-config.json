@@ -7,7 +7,9 @@
           "additionalAuthenticationProviders": [],
           "defaultAuthentication": {
             "apiKeyConfig": {
-              "apiKeyExpirationDays": 7
+              "apiKeyExpirationDate": "2024-12-05T00:47:31.258Z",
+              "apiKeyExpirationDays": 365,
+              "description": "NotesAPI"
             },
             "authenticationType": "API_KEY"
           }
